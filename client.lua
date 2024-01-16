@@ -419,6 +419,7 @@ RegisterNetEvent('jim-mining:WashStart', function(data) local Ped = PlayerPedId(
 		end)
 		if progressBar({label = Loc[Config.Lan].info["washing_stone"], time = Config.Debug and 1000 or Config.Timings["Washing"], cancel = true, icon = "stone"}) then
 			TriggerServerEvent('jim-mining:Reward', { wash = true, cost = cost })
+			TriggerEvent{'wais:addmissionxp:washstone', 1} -- added by Pamela for wais battlepass
 		end
 		lockInv(false)
 		StopParticleFxLooped(water, 0)
@@ -451,6 +452,7 @@ RegisterNetEvent('jim-mining:PanStart', function(data) local Ped = PlayerPedId()
 	TaskStartScenarioInPlace(Ped, "CODE_HUMAN_MEDIC_KNEEL", 0, true)
 	if progressBar({label = Loc[Config.Lan].info["goldpanning"], time = Config.Debug and 1000 or Config.Timings["Panning"], cancel = true, icon = "goldpan"}) then
 		TriggerServerEvent('jim-mining:Reward', { pan = true, cost = nil })
+		TriggerEvent('wais:addmissionxp:pangold', 1) -- added by Pamela for wais battlepass
 	end
 	ClearPedTasksImmediately(Ped)
 	destroyProp(Props[#Props])
@@ -470,6 +472,7 @@ RegisterNetEvent('jim-mining:SellAnim', function(data) local Ped = PlayerPedId()
 	end
 	loadAnimDict("mp_common")
 	TriggerServerEvent('jim-mining:Selling', data) -- Had to slip in the sell command during the animation command
+	TriggerEvent('wais:addmissionxp:sellmine', 1) -- added by Pamela for wais battlepass
 	loadAnimDict("mp_common")
 	lookEnt(data.ped)
 	TaskPlayAnim(Ped, "mp_common", "givetake2_a", 100.0, 200.0, 0.3, 1, 0.2, 0, 0, 0)	--Start animations

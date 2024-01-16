@@ -178,6 +178,7 @@ RegisterNetEvent('jim-mining:openShop', function(data)
 	if Config.JimShops then event = "jim-shops:ShopOpen"
 	elseif Config.Inv == "ox" then  exports.ox_inventory:openInventory('shop', { type = 'miningShop' }) end
 	TriggerServerEvent(event, "shop", "miningShop", Config.Items)
+	TriggerEvent('wais:addmissionxp:buymine', 1) -- added by Pamela for Wais battlepass
 	lookEnt(data.ped)
 end)
 
@@ -711,6 +712,7 @@ RegisterNetEvent('jim-mining:Crafting:MakeItem', function(data) local bartext, a
 	end
 	if progressBar({ label = bartext, time = Config.Debug and 2000 or bartime, cancel = true, dict = animDictNow, anim = animNow, flag = 8, icon = data.item }) then
 		TriggerServerEvent('jim-mining:Crafting:GetItem', data.item, data.craft)
+		TriggerEvent('wais:addmissionxp:craftmine', 1) --added by Pamela for wais battlepass
 		if data.ret then
 			if math.random(1, 1000) <= 75 then
 				local breakId = GetSoundId()

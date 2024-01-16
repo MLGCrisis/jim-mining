@@ -382,6 +382,7 @@ RegisterNetEvent('jim-mining:CrackStart', function(data) local Ped = PlayerPedId
 		TaskPlayAnim(Ped, dict, anim, 3.0, 3.0, -1, 1, 0, false, false, false)
 		if progressBar({label = Loc[Config.Lan].info["cracking_stone"], time = Config.Debug and 1000 or Config.Timings["Cracking"], cancel = true, icon = "stone"}) then
 			TriggerServerEvent('jim-mining:Reward', { crack = true, cost = cost })
+			TriggerEvent('wais:addmissionxp:mine', 1) -- added by Pamela for wais battlepass
 		end
 		StopAnimTask(Ped, dict, anim, 1.0)
 		unloadDrillSound()

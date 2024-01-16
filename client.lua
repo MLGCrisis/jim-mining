@@ -234,6 +234,7 @@ RegisterNetEvent('jim-mining:MineOre:Pick', function(data) local Ped = PlayerPed
 	end)
 	if progressBar({label = Loc[Config.Lan].info["drilling_ore"], time = Config.Debug and 1000 or Config.Timings["Pickaxe"], cancel = true, icon = "pickaxe"}) then
 		TriggerServerEvent('jim-mining:Reward', { mine = true, cost = nil })
+		TriggerEvent('wais:addmissionxp:pickaxemine', 1) -- Added by Pamela for wais Battlepass
 		if math.random(1,10) >= 9 then
 			local breakId = GetSoundId()
 			PlaySoundFromEntity(breakId, "Drill_Pin_Break", Ped, "DLC_HEIST_FLEECA_SOUNDSET", 1, 0)
@@ -280,6 +281,7 @@ RegisterNetEvent('jim-mining:MineOre:Drill', function(data) local Ped = PlayerPe
 		end)
 		if progressBar({label = Loc[Config.Lan].info["drilling_ore"], time = Config.Debug and 1000 or Config.Timings["Pickaxe"], cancel = true, icon = "pickaxe"}) then
 			TriggerServerEvent('jim-mining:Reward', { mine = true, cost = nil })
+			TrggerEvent('wais:addmissionxp:drillmine', 1) -- added by Pamela for wais battlepass 
 			--Destroy drill bit chances
 			if math.random(1, 10) >= 8 then
 				local breakId = GetSoundId()

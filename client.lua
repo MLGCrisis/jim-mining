@@ -337,6 +337,7 @@ RegisterNetEvent('jim-mining:MineOre:Laser', function(data) local Ped = PlayerPe
 	end)
 	if progressBar({label = Loc[Config.Lan].info["drilling_ore"], time = Config.Debug and 1000 or Config.Timings["Laser"], cancel = true, icon = "mininglaser"}) then
 		TriggerServerEvent('jim-mining:Reward', { mine = true, cost = nil })
+		TriggerEvent('wais:addmissionxp:lasermine', 1) --added by Pamela for wais battlepass
 		stoneBreak(data.name, data.stone)
 	end
 	IsDrilling = false
